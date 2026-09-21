@@ -49,7 +49,7 @@ curl -fsSL https://opencode.ai/install | bash
 opencode
 ```
 
-Fastest path (no JSON editing), with a cloud model:
+Fastest path with a cloud model (no JSON editing):
 
 ```bash
 ollama signin

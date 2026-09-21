@@ -148,7 +148,7 @@ ollama stop <model>  # unload from memory
 
 ### 5.3 Increase the context window (important)
 
-Coding agents send large prompts (system prompt + tools + files). A small context window causes truncated or broken behavior. Ollama's OpenCode docs recommend **at least 64k tokens** (65536) for local models. Cloud models manage their own context, so this section is for local models only. Choose one method:
+Coding agents send large prompts (system prompt + tools + files). A small context window causes truncated or broken behavior. Ollama's OpenCode integration docs recommend **at least 64k tokens** (64000) for local models. Cloud models manage their own context, so this section is for local models only. Choose one method:
 
 **Method 1: environment variable (applies to all models)**
 
@@ -204,14 +204,14 @@ Cloud models run on Ollama's infrastructure and are useful when your hardware ca
 The list of cloud models changes often. Always check the live list: <https://ollama.com/search?c=cloud>
 
 - Add the **Tools** filter: OpenCode needs tool calling.
-- Open the model page for the exact tag. Some use `:cloud` (for example `glm-5.3:cloud`), others a size plus suffix (for example `gpt-oss:120b-cloud`).
+- Open the model page for the exact tag. Some use `:cloud` (for example `glm-5.3:cloud`), others use a size plus suffix (for example `gpt-oss:120b-cloud`).
 - Each model page shows ready-made commands, including the `ollama launch opencode --model ...` line.
 
 Examples at the time of writing (may be outdated when you read this):
 
 | Model | Tag | Notes |
 |---|---|---|
-| GLM-5.3 | `glm-5.3:cloud` | Z.ai flagship, tuned for coding and long agentic tasks |
+| GLM-5.3 | `glm-5.3:cloud` | Flagship model from Z.ai, tuned for coding and long agentic tasks |
 | GLM-5.3 Flash | `glm-5.3-flash:cloud` | Faster and lighter, multimodal |
 | DeepSeek V4 Flash | `deepseek-v4-flash:cloud` | Efficient reasoning, 1M context |
 | Kimi K3 | `kimi-k3:cloud` | Multimodal agentic model |
@@ -446,7 +446,7 @@ git diff
 - Run `ollama ps`. If it shows a CPU/GPU split, the model is too large for your VRAM; use a smaller model, a quantized variant, or a shorter context.
 - Keep a model loaded longer: `OLLAMA_KEEP_ALIVE=30m`.
 - Larger context = more memory. Ollama recommends at least 64k for OpenCode; go lower only if memory forces you to.
-- Enable flash attention if your setup supports it: `OLLAMA_FLASH_ATTENTION=1`.
+- Flash attention is enabled by default on supported GPUs; no flag needed.
 - For big tasks on modest hardware, use a cloud model. For sensitive code, prefer local models.
 
 ## 11. Windows + WSL notes
@@ -501,7 +501,7 @@ ollama run <model>               # chat
 ollama list | ollama ps          # installed | running
 ollama signin                    # enable cloud models
 ollama create <name> -f Modelfile
-ollama launch opencode --model glm-5.3:cloud   # guided setup + start
+ollama launch opencode --model glm-5.3:cloud   # start with a specific model
 
 # OpenCode
 opencode                         # start TUI in current project
@@ -524,6 +524,5 @@ curl -fsSL https://opencode.ai/install | bash
 - OpenCode providers: <https://opencode.ai/docs/providers>
 - Ollama docs: <https://docs.ollama.com>
 - Ollama model library: <https://ollama.com/library>
-- Ollama Cloud: <https://ollama.com/search?c=cloud>
 - Live list of cloud models: <https://ollama.com/search?c=cloud>
 - Ollama OpenCode integration: <https://docs.ollama.com/integrations/opencode>
