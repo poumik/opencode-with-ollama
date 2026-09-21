@@ -395,7 +395,7 @@ ollama launch opencode
 
 # choose the model directly
 ollama launch opencode --model glm-5.3:cloud        # cloud (run `ollama signin` first)
-ollama launch opencode --model qwen3-coder          # local (pull it first)
+ollama launch opencode --model qwen3-coder:30b      # local (pull it first)
 
 # write the config only, don't start OpenCode
 ollama launch opencode --config
@@ -446,7 +446,7 @@ git diff
 - Run `ollama ps`. If it shows a CPU/GPU split, the model is too large for your VRAM; use a smaller model, a quantized variant, or a shorter context.
 - Keep a model loaded longer: `OLLAMA_KEEP_ALIVE=30m`.
 - Larger context = more memory. Ollama recommends at least 64k for OpenCode; go lower only if memory forces you to.
-- Flash attention is enabled by default on supported GPUs; no flag needed.
+- Flash attention is enabled by default on supported GPUs in recent Ollama versions; verify against your release notes if unsure.
 - For big tasks on modest hardware, use a cloud model. For sensitive code, prefer local models.
 
 ## 11. Windows + WSL notes
@@ -498,7 +498,8 @@ journalctl -u ollama -f                   # Linux server logs
 # Ollama
 ollama pull <model>              # download
 ollama run <model>               # chat
-ollama list | ollama ps          # installed | running
+ollama list                      # installed models
+ollama ps                        # running models
 ollama signin                    # enable cloud models
 ollama create <name> -f Modelfile
 ollama launch opencode --model glm-5.3:cloud   # start with a specific model
@@ -509,7 +510,7 @@ opencode run "<prompt>"          # one-shot
 opencode models                  # list models
 ```
 
-**Minimal working local setup in 4 commands:**
+**Minimal working local setup:**
 
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
