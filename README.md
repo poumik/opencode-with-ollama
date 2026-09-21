@@ -81,6 +81,17 @@ The list of cloud models changes often: see <https://ollama.com/search?c=cloud> 
 - Review agent changes with `git diff` before committing.
 - Avoid exposing Ollama (`OLLAMA_HOST=0.0.0.0`) on untrusted networks.
 
+## References
+
+- Full guide: [OpenCode + Ollama Setup Guide](./opencode-and-ollama.md)
+- OpenCode docs: https://opencode.ai/docs
+- OpenCode providers: https://opencode.ai/docs/providers
+- Ollama docs: https://docs.ollama.com
+- Ollama model library: https://ollama.com/library
+- Ollama Cloud: https://ollama.com/cloud
+- Live cloud model list: https://ollama.com/search?c=cloud
+- Ollama + OpenCode integration: https://docs.ollama.com/integrations/opencode
+
 ## Contributing
 
 Issues and pull requests are welcome, especially for corrections as Ollama and OpenCode evolve (commands and config formats change between versions).
